@@ -1,0 +1,23 @@
+# Ambiente virtual
+venv/
+
+# Banco de dados SQLite (se existir)
+*.sqlite3
+
+# Arquivos de mídia enviados pelos usuários
+media/
+
+# Arquivos compilados Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Configurações do VS Code
+.vscode/
+
+# Arquivos do sistema Windows
+Thumbs.db
+desktop.ini
+
+# Variáveis de ambiente
+.env

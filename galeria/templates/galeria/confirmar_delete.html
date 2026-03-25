@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<div class="delete-container">
+    <h2>⚠️ Confirmar Exclusão</h2>
+    <p>Tem certeza que deseja deletar:</p>
+    <strong>{{ imagem.titulo }}</strong>
+
+    <img src="{{ imagem.arquivo.url }}" alt="{{ imagem.titulo }}">
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-botoes" style="justify-content:center;">
+            <button type="submit" class="btn-deletar">Sim, deletar</button>
+            <a href="{% url 'lista_imagens' %}" class="btn-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

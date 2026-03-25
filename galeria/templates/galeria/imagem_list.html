@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+    <!-- BOTÃO NOVA IMAGEM -->
+    <div class="barra-acoes">
+        <a href="{% url 'criar_imagem' %}" class="btn-nova-imagem">+ Nova Imagem</a>
+    </div>
+
+    <div class="cabecalho-colecoes">
+        <h2>Coleções populares</h2>
+        <p>Explore coleções de imagens grátis por categoria</p>
+
+        <div class="filtros">
+            <a href="{% url 'lista_imagens' %}"
+               class="btn-filtro {% if not categoria_ativa %}ativo{% endif %}">
+                Todas as coleções
+            </a>
+            {% for categoria in categorias %}
+                <a href="{% url 'lista_imagens' %}?categoria={{ categoria.id }}"
+                   class="btn-filtro {% if categoria_ativa.id == categoria.id %}ativo{% endif %}">
+                    {{ categoria.nome|upper }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="galeria-container">
+        {% for img in imagens %}
+
+            <div class="item-galeria" onclick="abrirModal('{{ img.arquivo.url }}')">
+
+                <img src="{{ img.arquivo.url }}" alt="{{ img.titulo }}">
+
+                <div class="overlay-texto">
+                    <h3>{{ img.titulo|upper }}</h3>
+                </div>
+
+                <!-- BOTÕES CRUD -->
+                <div class="acoes-card">
+                    <a href="{% url 'editar_imagem' img.pk %}" class="btn-editar-card">✏️</a>
+                    <a href="{% url 'deletar_imagem' img.pk %}" class="btn-deletar-card">🗑️</a>
+                </div>
+
+            </div>
+
+        {% empty %}
+            <p style="color: white;">Nenhuma imagem cadastrada ainda.</p>
+        {% endfor %}
+    </div>
+
+    <!-- MODAL -->
+    <div id="meuModal" class="modal">
+        <span class="fechar" onclick="fecharModal()">&times;</span>
+        <img class="modal-conteudo" id="imagemModal">
+    </div>
+
+{% endblock %}

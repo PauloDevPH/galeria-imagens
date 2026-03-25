@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<div class="form-container">
+    <h2>{{ titulo }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+            <p class="form-erro">{{ field.errors }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <div class="form-botoes">
+            <button type="submit" class="btn-salvar">Salvar</button>
+            <a href="{% url 'lista_imagens' %}" class="btn-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

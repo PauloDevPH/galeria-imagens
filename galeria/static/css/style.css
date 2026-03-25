@@ -1,0 +1,344 @@
+/* ========================================= */
+/* 1. GERAL E DARK MODE                      */
+/* ========================================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212; /* Fundo quase preto, estilo Netflix */
+    color: #ffffff; /* Letras brancas */
+    margin: 0;
+    padding: 40px; /* Mais espaço nas bordas */
+}
+
+/* ========================================= */
+/* 2. CABEÇALHO E BOTÕES DE FILTRO           */
+/* ========================================= */
+.cabecalho-colecoes {
+    max-width: 1000px;
+    margin: 0 auto 30px auto; /* Centraliza a área e dá margem em baixo */
+    text-align: left; /* Alinha o texto à esquerda como na sua imagem */
+}
+
+.cabecalho-colecoes h2 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.cabecalho-colecoes p {
+    color: #aaaaaa; /* Cinza claro para o subtítulo */
+    margin-bottom: 20px;
+}
+
+.filtros {
+    display: flex;
+    gap: 15px; /* Espaço entre os botões */
+    flex-wrap: wrap;
+}
+
+/* O design dos botões vazados (com borda) */
+.btn-filtro {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Quando passa o rato ou quando o botão está selecionado */
+.btn-filtro:hover, .btn-filtro.ativo {
+    background-color: #ffffff;
+    color: #000000; /* Inverte as cores */
+}
+
+/* Filtros agora são links */
+.btn-filtro {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* ========================================= */
+/* 3. A GALERIA E OS CARDS                   */
+/* ========================================= */
+.galeria-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* O Cartão agora precisa ser relativo para segurar o texto absoluto */
+.item-galeria {
+    position: relative; /* FUNDAMENTAL: Prende o texto aqui dentro */
+    width: 48%; /* Ocupa quase metade da tela (2 colunas) como na sua foto */
+    min-width: 300px; /* Para não ficar muito pequeno em celulares */
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden; /* Corta o que passar das bordas arredondadas */
+    cursor: pointer;
+    
+    /* Efeito Hover no card inteiro que você pediu */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* O Efeito Hover de ampliação */
+.item-galeria:hover {
+    transform: scale(1.03); /* Amplia 3% (suave) */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.item-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* A película escura com o texto (Overlay) */
+.overlay-texto {
+    position: absolute;
+    bottom: 0; /* Cola na parte de baixo do card */
+    left: 0;
+    right: 0;
+    /* Faz um degradê: transparente no meio da foto, preto em baixo */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 30px 20px 20px 20px;
+    text-align: center;
+}
+
+.overlay-texto h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Sombra na letra para destacar */
+}
+
+
+/* 4. O MODAL (PARA O PASSO 10)*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-conteudo {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    margin-top: 5vh;
+    border-radius: 4px;
+}
+
+.fechar {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fechar:hover {
+    color: #aaaaaa;
+}
+
+/* ========================================= */
+/* 5. FORMULÁRIOS                            */
+/* ========================================= */
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.form-container h2 {
+    margin-bottom: 25px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #aaaaaa;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.form-erro {
+    color: #ff5555;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.form-botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-salvar {
+    padding: 10px 25px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-salvar:hover {
+    background: #dddddd;
+}
+
+.btn-cancelar {
+    padding: 10px 25px;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-cancelar:hover {
+    background: white;
+    color: black;
+}
+
+/* ========================================= */
+/* 6. CONFIRMAR DELETE                       */
+/* ========================================= */
+
+.delete-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.delete-container h2 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.delete-container p {
+    color: #aaaaaa;
+    margin-bottom: 10px;
+}
+
+.delete-container strong {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.delete-container img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.btn-deletar {
+    padding: 10px 25px;
+    background: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-deletar:hover {
+    background: #ff0000;
+}
+
+/* ========================================= */
+/* 7. BOTÃO NOVA IMAGEM E CRUD NOS CARDS     */
+/* ========================================= */
+
+.barra-acoes {
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+    text-align: right;
+}
+
+.btn-nova-imagem {
+    padding: 10px 20px;
+    background: white;
+    color: black;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-nova-imagem:hover {
+    background: #dddddd;
+}
+
+.acoes-card {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 6px;
+}
+
+.btn-editar-card {
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    backdrop-filter: blur(4px);
+}
+
+.btn-deletar-card {
+    padding: 5px 10px;
+    background: rgba(204,0,0,0.7);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
