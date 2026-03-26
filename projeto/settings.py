@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,11 +80,11 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'galeria_db',            # Nome da base de dados que vai criar no Postgres
-        'USER': 'postgres',              # O seu utilizador do Postgres (geralmente é 'postgres')
-        'PASSWORD': '1234',    # A palavra-passe do seu Postgres
-        'HOST': 'localhost',             # Onde a base de dados está a correr (o seu PC)
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST', 'localhost'), # 'localhost' é um valor padrão caso não encontre
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
